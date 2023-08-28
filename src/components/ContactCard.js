@@ -1,13 +1,13 @@
-import styles from "../styles/contact.module.css";
-
 function ContactCard(props) {
   const { contact } = props;
   console.log(contact);
   return (
-    <div className={styles.contactDiv}>
-      <h1 className="text-3xl font-bold underline">{contact.name}</h1>
-      <div className={styles.contactName}></div>
-    </div>
+    <li className="">
+      <img className="" src="" alt="" />
+      <div className="">
+        <h1 className="">{contact.name}</h1>
+      </div>
+    </li>
   );
 }
 

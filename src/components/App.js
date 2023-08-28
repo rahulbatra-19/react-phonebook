@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/app.module.css";
 import ContactCard from "./ContactCard";
 
 function App() {
@@ -20,11 +19,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <div className={styles.Main}>
-        {data.map((contact, index) => (
-          <ContactCard contact={contact} key={`Contact-${index}`} />
-        ))}
-      </div>
+        <ul role="list" className="">
+          {data.map((contact, index) => (
+              <ContactCard contact={contact} key={`Contact-${index}`} />
+          ))}
+        </ul>
     </div>
   );
 }
