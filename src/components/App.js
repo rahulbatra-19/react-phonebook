@@ -188,7 +188,10 @@ function App() {
               onChange={handleCompanyInputChange}
               placeholder="Enter Company name"
             />
-            <button onClick={handleAddContact}>Submit Form</button>
+            <div>
+              <button onClick={handleAddContact}>Submit Form</button>
+              <button onClick={() => setShowForm(false)}>Cancel</button>
+            </div>
           </form>
         </div>
       )}

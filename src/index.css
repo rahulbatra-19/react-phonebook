@@ -186,9 +186,28 @@ height: fit-content;
   flex-direction: column;
   width: 55%;
   margin-left: 20%;
+  margin-top: 3%;
 }
 .formAddContact form input{
   padding: 8px;
+  font-size: 1.4rem;
   border: none;
   margin-bottom: 4px;
+  border-radius: 20px;
+  padding-left: 16px;
+}
+.formAddContact form label {
+  font-size: 1.4rem;
+}
+.formAddContact form button{
+  padding: 10px;
+  width: 30%;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(120, 86, 70);
+  color: whitesmoke;
+  font-size: 1.4rem;
+  margin-left: 11%;
+  margin-top: 2%;
+
 }
