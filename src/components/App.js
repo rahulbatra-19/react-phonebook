@@ -19,11 +19,12 @@ function App() {
   }, []);
   return (
     <div className="App">
-        <ul role="list" className="">
-          {data.map((contact, index) => (
-              <ContactCard contact={contact} key={`Contact-${index}`} />
-          ))}
-        </ul>
+      <h1 className="mainHeading">Contacts</h1>
+      <ul role="list" className="contactList">
+        {data.map((contact, index) => (
+          <ContactCard contact={contact} key={`Contact-${index}`} />
+        ))}
+      </ul>
     </div>
   );
 }
