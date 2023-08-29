@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import Tooltip from "./Tooltip";
 
 function ContactCard(props) {
-  const { contact } = props;
+  const { contact, onDelete } = props;
   const [hoveringDescription, setHoveringDescription] = useState(false);
   const [content, setContent] = useState("");
   const [hoveringEmail, setHoveringEmail] = useState(false);
+  const [hoveringDeleteButton, setHoveringDeleteButton] = useState(false);
+
   const [showDescription, setShowDescription] = useState(false);
+
   useEffect(() => {}, [showDescription]);
 
   return (
@@ -49,10 +52,16 @@ function ContactCard(props) {
 
           <button
             className="showDescriptionButton"
-            onClick={() => setShowDescription(!showDescription)}
+            onClick={() => {
+              setShowDescription(!showDescription);
+            }}
             onMouseEnter={() => {
               setHoveringDescription(true);
-              setContent("Show Description");
+              if (showDescription) {
+                setContent("Hide Description");
+              } else {
+                setContent("Show Description");
+              }
             }}
             onMouseLeave={() => setHoveringDescription(false)}
           >
@@ -63,6 +72,25 @@ function ContactCard(props) {
               alt="business-contact"
             />
             {hoveringDescription && (
+              <Tooltip position={"top"} content={content} />
+            )}
+          </button>
+          <button
+            className="deleteContact"
+            onClick={() => onDelete(contact.id)}
+            onMouseEnter={() => {
+              setHoveringDeleteButton(true);
+              setContent("Delete Contact");
+            }}
+            onMouseLeave={() => setHoveringDeleteButton(false)}
+          >
+            <img
+              width="35"
+              height="30"
+              src="https://img.icons8.com/carbon-copy/50/785646/filled-trash.png"
+              alt="filled-trash"
+            />
+            {hoveringDeleteButton && (
               <Tooltip position={"top"} content={content} />
             )}
           </button>
@@ -86,7 +114,6 @@ function ContactCard(props) {
           </div>
           <div className="phoneNo">
             <a href={`tel:${contact.phone}`}>
-              {" "}
               <img
                 width="25"
                 height="25"

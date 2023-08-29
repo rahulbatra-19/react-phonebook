@@ -75,7 +75,11 @@ width: 50%;
 }
 .showDescriptionButton {
 margin-left: 10px;
+margin-right: 5px;
 height: fit-content;
+}
+.deleteContact{
+  height: fit-content;
 }
 .EmailImg {
   vertical-align: bottom;
