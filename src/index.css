@@ -137,6 +137,14 @@ height: fit-content;
   color: rgba(203, 94, 44, 0.91);
   float: right;
 }
+.EditContactSubmit{
+  float: right;
+  border: none;
+  color: whitesmoke;
+  background-color:#785646 ;
+  padding: 5px;
+  margin-top: 4%;
+}
 
 /* Tooltip css */
 .tooltip{

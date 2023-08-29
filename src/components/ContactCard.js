@@ -68,40 +68,25 @@ function ContactCard(props) {
               </p>
             </div>
             <div className="right">
-              <p>
-                Company:
-                <span>
-                  <input
-                    type="text"
-                    name="name"
-                    value={contactData.company.name}
-                    onChange={handleCompanyInputChange}
-                  />
-                </span>
-              </p>
-            </div>
-            <div className="Buttons">
-              <a
-                href={`mailto:${contact.email}`}
-                className="EmailATag"
-                onMouseEnter={() => {
-                  setHoveringEmail(true);
-                  setContent("Send Email");
-                }}
-                onMouseLeave={() => setHoveringEmail(false)}
-              >
-                <img
-                  className="EmailImg"
-                  width="30"
-                  height="30"
-                  src="https://img.icons8.com/ios/50/785646/send-mass-email.png"
-                  alt="send-mass-email"
+              Company:
+              <span>
+                <input
+                  type="text"
+                  name="name"
+                  value={contactData.company.name}
+                  onChange={handleCompanyInputChange}
                 />
-                {hoveringEmail && (
-                  <Tooltip position={"top"} content={content} />
-                )}
-              </a>
+              </span>
             </div>
+            Email:
+            <span>
+              <input
+                type="email"
+                name="email"
+                value={contactData.email}
+                onChange={handleInputChange}
+              />
+            </span>
           </div>
           <div className="Description">
             <div className="location">
@@ -152,14 +137,14 @@ function ContactCard(props) {
                 />
               </div>
               <button
-                className="EditContact"
+                className="EditContactSubmit"
                 onClick={() => {
                   setShowEditable(false);
                   onUpdate(contact.id, contactData);
                 }}
                 onMouseEnter={() => {
                   setHoveringEditContact(true);
-                  setContent("Edited Contact");
+                  setContent("Submit");
                 }}
                 onMouseLeave={() => setHoveringEditContact(false)}
               >
