@@ -24,6 +24,7 @@ function App() {
       name: "",
     },
   });
+
   const handleAddContact = async (event) => {
     event.preventDefault();
     try {
@@ -94,6 +95,22 @@ function App() {
       // Update state after successful deletion
       setData((prevData) =>
         prevData.filter((contact) => contact.id !== contactId)
+      );
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
+  const handleUpdateContact = async (contactId, updatedContact) => {
+    try {
+      const response = await axios.put(
+        `https://jsonplaceholder.typicode.com/users/${contactId}`,
+        updatedContact
+      );
+      // Update state after successful deletion
+      setData((prevData) =>
+        prevData.map((contact) =>
+          contact.id === contactId ? response.data : contact
+        )
       );
     } catch (error) {
       console.error("Error deleting contact:", error);
@@ -202,6 +219,7 @@ function App() {
             contact={contact}
             key={`Contact-${index}`}
             onDelete={handleDeleteContact}
+            onUpdate={handleUpdateContact}
           />
         ))}
       </ul>
