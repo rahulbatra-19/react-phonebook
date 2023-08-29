@@ -6,6 +6,8 @@ function ContactCard(props) {
   const [hoveringDescription, setHoveringDescription] = useState(false);
   const [content, setContent] = useState("");
   const [hoveringEmail, setHoveringEmail] = useState(false);
+  const [hoveringEditContact, setHoveringEditContact] = useState(false);
+
   const [hoveringDeleteButton, setHoveringDeleteButton] = useState(false);
 
   const [showDescription, setShowDescription] = useState(false);
@@ -112,16 +114,37 @@ function ContactCard(props) {
               {contact.address.zipcode}
             </span>
           </div>
-          <div className="phoneNo">
-            <a href={`tel:${contact.phone}`}>
+          <div className="rightDescription">
+            <div className="phoneNo">
+              <a href={`tel:${contact.phone}`}>
+                <img
+                  width="25"
+                  height="25"
+                  src="https://img.icons8.com/ios-glyphs/30/785646/phone--v1.png"
+                  alt="phone--v1"
+                />
+                {contact.phone}
+              </a>
+            </div>
+            <button
+              className="EditContact"
+              onClick={() => onDelete(contact.id)}
+              onMouseEnter={() => {
+                setHoveringEditContact(true);
+                setContent("Edit Contact");
+              }}
+              onMouseLeave={() => setHoveringEditContact(false)}
+            >
               <img
-                width="25"
-                height="25"
-                src="https://img.icons8.com/ios-glyphs/30/785646/phone--v1.png"
-                alt="phone--v1"
+                width="30"
+                height="30"
+                src="https://img.icons8.com/material-rounded/30/785646/writer-male.png"
+                alt="writer-male"
               />
-              {contact.phone}
-            </a>
+              {hoveringEditContact && (
+                <Tooltip position={"top"} content={content} />
+              )}
+            </button>
           </div>
         </div>
       )}

@@ -13,7 +13,7 @@ body {
 .contactList{
   list-style: none;
   padding: 0;
-  margin-left: 16%;
+  margin-left: 19%;
   margin-top: 0;
   width: 55%;
   /* background-color: rgba(214, 184, 170, 0.346); */
@@ -23,11 +23,20 @@ body {
 }
 .mainHeading{
   background-color: rgb(120, 86, 70);
-
+  display: flex;
   margin: 0;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   color: whitesmoke;
+}
+.mainHeading h1{
+  width: 50%;
+  text-align: right;
+  margin-right: 17%;
+}
+.addContact{
+  background-color: transparent;
+  border: none;
 }
 .App{
   /* margin: 0; */
@@ -108,6 +117,7 @@ height: fit-content;
   justify-self: right;
   float: right;
   margin-right: 4%;
+  height: 40px;
 }
 .phoneNo img{
   vertical-align:text-top;
@@ -118,11 +128,17 @@ height: fit-content;
 
   text-decoration: none;
 }
-
-
+.rightDescription {
+  margin-right: 5%;
+}
+.EditContact{
+  border: none;
+  background-color: transparent;
+  color: rgba(203, 94, 44, 0.91);
+  float: right;
+}
 
 /* Tooltip css */
-
 .tooltip{
   position: relative;
   display: inline-block;
@@ -157,10 +173,22 @@ height: fit-content;
   content: " ";
   display: block;
   position: absolute;
-  left: 90px;
+  left: 95px;
   border-color:rgb(118, 52, 22) transparent    transparent    transparent  ;
   border-style: solid;
   border-width: 8px;
  } 
 
 
+
+.formAddContact form{
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin-left: 20%;
+}
+.formAddContact form input{
+  padding: 8px;
+  border: none;
+  margin-bottom: 4px;
+}
