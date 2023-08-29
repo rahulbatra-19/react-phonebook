@@ -114,3 +114,49 @@ height: fit-content;
 
   text-decoration: none;
 }
+
+
+
+/* Tooltip css */
+
+.tooltip{
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px solid lightgray; /* If you want dots under the hoverable text */
+}
+.tooltip .tooltipText{
+  min-width: 160px;
+  /* width: fit-content; */
+  background-color: rgb(118, 52, 22);
+  color: white;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 3px; 
+
+  /* Position the tooltip text - see examples below! */ 
+  position: absolute;  
+  z-index: 1;
+}
+
+
+.tooltip-top{
+  bottom: 60px;
+  left: -120px;
+  white-space:nowrap;
+  right: unset;
+}
+.tooltip-top .tooltipText{
+  height: 20px;
+}
+.tooltip-top:after{
+  top: 25px;
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 90px;
+  border-color:rgb(118, 52, 22) transparent    transparent    transparent  ;
+  border-style: solid;
+  border-width: 8px;
+ } 
+
+
