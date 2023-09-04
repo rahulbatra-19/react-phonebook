@@ -12,9 +12,7 @@ function ContactCard(props) {
   const [hoveringDeleteButton, setHoveringDeleteButton] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
 
-  useEffect(() => {}, [showDescription]);
   const handleInputChange = (event) => {
-    console.log(event.target);
     const { name, value } = event.target;
     setContactData((prevData) => ({
       ...prevData,
@@ -160,8 +158,8 @@ function ContactCard(props) {
         <>
           <div className="mainDiv">
             <div className="left">
-              <h3 className="contactName">{contactData.name}</h3>
-              <p className="contactuserName">@{contactData.username}</p>
+              <h3 className="contactName">{contact.name}</h3>
+              <p className="contactuserName">@{contact.username}</p>
             </div>
             <div className="right">
               <p>
@@ -171,7 +169,7 @@ function ContactCard(props) {
                   src="https://img.icons8.com/ios/50/785646/company--v1.png"
                   alt="company--v1"
                 />
-                <span>{contactData.company.name}</span>
+                <span>{contact.company.name}</span>
               </p>
             </div>
             <div className="Buttons">
@@ -252,15 +250,15 @@ function ContactCard(props) {
                   alt="marker"
                 />
                 <span>
-                  {contactData.address.street}, <br />
-                  {contactData.address.suite},<br />
-                  {contactData.address.city},<br />
-                  {contactData.address.zipcode}
+                  {contact.address.street}, <br />
+                  {contact.address.suite},<br />
+                  {contact.address.city},<br />
+                  {contact.address.zipcode}
                 </span>
               </div>
               <div className="rightDescription">
                 <div className="phoneNo">
-                  <a href={`tel:${contactData.phone}`}>
+                  <a href={`tel:${contact.phone}`}>
                     <img
                       width="25"
                       height="25"

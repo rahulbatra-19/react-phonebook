@@ -8,7 +8,7 @@ function App() {
   const [showform, setShowForm] = useState(false);
   const [addContact, setAddContact] = useState(false);
   const [hoveringAddContact, setHoveringAddContact] = useState(false);
-  const [formData, setFormData] = useState({
+  const htmlformData = {
     id: data.length + 1,
     name: "",
     username: "",
@@ -23,12 +23,12 @@ function App() {
     company: {
       name: "",
     },
-  });
+  };
+  const [formData, setFormData] = useState(htmlformData);
 
   const handleAddContact = async (event) => {
     event.preventDefault();
     try {
-      console.log("hah");
       const response = await axios.post(
         "https://jsonplaceholder.typicode.com/users",
         formData
@@ -36,6 +36,7 @@ function App() {
       console.log(response.data);
       setData((prevData) => [response.data, ...prevData]);
       setShowForm(false);
+      setFormData(htmlformData);
     } catch (error) {
       console.error("Error adding contact:", error);
     }
@@ -88,30 +89,43 @@ function App() {
     fetchData();
   }, []);
   const handleDeleteContact = async (contactId) => {
+    console.log("deleeted");
     try {
       await axios.delete(
         `https://jsonplaceholder.typicode.com/users/${contactId}`
       );
       // Update state after successful deletion
-      setData((prevData) =>
-        prevData.filter((contact) => contact.id !== contactId)
-      );
+      // console.log(contactId);
+      const filteredArray = data.filter((contact) => contact.id != contactId);
+      // console.log("filtered Array ", filteredArray);
+      setData(filteredArray);
+      // console.log("filtered Array data", data);
     } catch (error) {
       console.error("Error deleting contact:", error);
     }
   };
   const handleUpdateContact = async (contactId, updatedContact) => {
     try {
-      const response = await axios.put(
-        `https://jsonplaceholder.typicode.com/users/${contactId}`,
-        updatedContact
-      );
-      // Update state after successful deletion
-      setData((prevData) =>
-        prevData.map((contact) =>
-          contact.id === contactId ? response.data : contact
-        )
-      );
+      console.log("contactID", contactId);
+      if (contactId <= 10) {
+        const response = await axios.put(
+          `https://jsonplaceholder.typicode.com/users/${contactId}`,
+          updatedContact
+        );
+
+        // Update state after successful deletion
+        setData((prevData) =>
+          prevData.map((contact) =>
+            contact.id === contactId ? response.data : contact
+          )
+        );
+      } else {
+        setData((prevData) =>
+          prevData.map((contact) =>
+            contact.id === contactId ? updatedContact : contact
+          )
+        );
+      }
     } catch (error) {
       console.error("Error deleting contact:", error);
     }
@@ -214,10 +228,11 @@ function App() {
       )}
 
       <ul role="list" className="contactList">
-        {data.map((contact, index) => (
+        {/* {console.log("jojojo", data)} */}
+        {data.map((contact) => (
           <ContactCard
             contact={contact}
-            key={`Contact-${index}`}
+            key={`Contact-${contact.id}`}
             onDelete={handleDeleteContact}
             onUpdate={handleUpdateContact}
           />
