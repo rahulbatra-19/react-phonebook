@@ -3,7 +3,7 @@ import Tooltip from "./Tooltip";
 
 function ContactCard(props) {
   const { contact, onDelete, onUpdate } = props;
-  const [contactData, setContactData] = useState(contact);
+  const [contactData, setContactData] = useState({});
   const [hoveringDescription, setHoveringDescription] = useState(false);
   const [content, setContent] = useState("");
   const [hoveringEmail, setHoveringEmail] = useState(false);
@@ -224,7 +224,10 @@ function ContactCard(props) {
               </button>
               <button
                 className="deleteContact"
-                onClick={() => onDelete(contact.id)}
+                onClick={() => {
+                  onDelete(contact.id);
+                  setShowDescription(false);
+                }}
                 onMouseEnter={() => {
                   setHoveringDeleteButton(true);
                   setContent("Delete Contact");
@@ -268,12 +271,15 @@ function ContactCard(props) {
                       src="https://img.icons8.com/ios-glyphs/30/785646/phone--v1.png"
                       alt="phone--v1"
                     />
-                    {contactData.phone}
+                    {contact.phone}
                   </a>
                 </div>
                 <button
                   className="EditContact"
-                  onClick={() => setShowEditable(!showEditable)}
+                  onClick={() => {
+                    setContactData(contact);
+                    setShowEditable(!showEditable);
+                  }}
                   onMouseEnter={() => {
                     setHoveringEditContact(true);
                     setContent("Edit Contact");
