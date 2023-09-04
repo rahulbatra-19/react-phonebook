@@ -7,9 +7,12 @@ function App() {
   const [data, setData] = useState([]);
   const [showform, setShowForm] = useState(false);
   const [hoveringAddContact, setHoveringAddContact] = useState(false);
-  // this htmlformdata is like the json object in the api for better editing and adding the data
-  const htmlformData = {
-    id: data.length + 1,
+  const [contactId, setContactId] = useState(
+    data.length > 0 ? data[data.length - 1] + 1 : 11
+  );
+  // this form dat is like the json object in the api for better editing and adding the data
+  const htmlFormData = {
+    id: contactId,
     name: "",
     username: "",
     email: "",
@@ -24,7 +27,7 @@ function App() {
       name: "",
     },
   };
-  const [formData, setFormData] = useState(htmlformData);
+  const [formData, setFormData] = useState(htmlFormData);
   // This function handles add contact functionlity
   const handleAddContact = async (event) => {
     event.preventDefault();
@@ -33,10 +36,11 @@ function App() {
         "https://jsonplaceholder.typicode.com/users",
         formData
       );
-      console.log(response.data);
-      setData((prevData) => [response.data, ...prevData]);
+      setContactId(contactId + 1);
+      const newContact = { ...response.data, id: contactId };
+      setData((prevData) => [...prevData, newContact]);
       setShowForm(false);
-      setFormData(htmlformData);
+      setFormData(htmlFormData);
     } catch (error) {
       console.error("Error adding contact:", error);
     }
@@ -93,17 +97,13 @@ function App() {
   }, []);
   //  this function handles the deletion of the contact from api although it is an dummy api still
   const handleDeleteContact = async (contactId) => {
-    console.log("deleeted");
     try {
       await axios.delete(
         `https://jsonplaceholder.typicode.com/users/${contactId}`
       );
       // Update state after successful deletion
-      // console.log(contactId);
       const filteredArray = data.filter((contact) => contact.id != contactId);
-      // console.log("filtered Array ", filteredArray);
       setData(filteredArray);
-      // console.log("filtered Array data", data);
     } catch (error) {
       console.error("Error deleting contact:", error);
     }
@@ -234,10 +234,10 @@ function App() {
 
       <ul role="list" className="contactList">
         {/* {console.log("jojojo", data)} */}
-        {data.map((contact) => (
+        {data.map((contact, index) => (
           <ContactCard
             contact={contact}
-            key={`Contact-${contact.id}`}
+            key={`Contact-${index}`}
             onDelete={handleDeleteContact}
             onUpdate={handleUpdateContact}
           />
