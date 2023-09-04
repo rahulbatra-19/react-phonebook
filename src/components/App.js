@@ -8,6 +8,7 @@ function App() {
   const [showform, setShowForm] = useState(false);
   const [addContact, setAddContact] = useState(false);
   const [hoveringAddContact, setHoveringAddContact] = useState(false);
+  // this htmlformdata is like the json object in the api for better editing and adding the data
   const htmlformData = {
     id: data.length + 1,
     name: "",
@@ -25,7 +26,7 @@ function App() {
     },
   };
   const [formData, setFormData] = useState(htmlformData);
-
+  // This function handles add contact functionlity
   const handleAddContact = async (event) => {
     event.preventDefault();
     try {
@@ -41,6 +42,7 @@ function App() {
       console.error("Error adding contact:", error);
     }
   };
+  // This function function handles the fomt data of keys address which is object in the form of add contact
   const handleAddressInputChange = (event) => {
     const { name, value } = event.target;
     console.log(event.target);
@@ -53,6 +55,7 @@ function App() {
       },
     }));
   };
+  // This function function handles the form data of keys which is an object Company in the form of add contact
   const handleCompanyInputChange = (event) => {
     const { name, value } = event.target;
     console.log(event.target);
@@ -65,6 +68,7 @@ function App() {
       },
     }));
   };
+  // This function function handles the form data of keys which are not objects in the form of add contact
   const handleInputChange = (event) => {
     console.log(event.target);
     const { name, value } = event.target;
@@ -73,7 +77,7 @@ function App() {
       [name]: value,
     }));
   };
-
+  // this is for fetching the data from the api
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,6 +92,7 @@ function App() {
     };
     fetchData();
   }, []);
+  //  this function handles the deletion of the contact from api although it is an dummy api still
   const handleDeleteContact = async (contactId) => {
     console.log("deleeted");
     try {
@@ -104,6 +109,7 @@ function App() {
       console.error("Error deleting contact:", error);
     }
   };
+  //  this function handles the editing  of the contact from api although it is an dummy api still
   const handleUpdateContact = async (contactId, updatedContact) => {
     try {
       console.log("contactID", contactId);

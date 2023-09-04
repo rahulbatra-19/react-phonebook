@@ -12,6 +12,7 @@ function ContactCard(props) {
   const [hoveringDeleteButton, setHoveringDeleteButton] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
 
+  // this is a handle input change for the form data for inline editing
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setContactData((prevData) => ({
@@ -19,6 +20,7 @@ function ContactCard(props) {
       [name]: value,
     }));
   };
+  // this is a handle input change for the form data where key company is an object itself   for inline editing
   const handleCompanyInputChange = (event) => {
     const { name, value } = event.target;
     console.log(event.target);
@@ -31,6 +33,7 @@ function ContactCard(props) {
       },
     }));
   };
+  // this is a handle input change for the form data where key Address is an object itself for inline editing
   const handleAddressInputChange = (event) => {
     const { name, value } = event.target;
     setContactData((prevContact) => ({
