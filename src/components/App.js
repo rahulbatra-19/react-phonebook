@@ -6,7 +6,6 @@ import Tooltip from "./Tooltip";
 function App() {
   const [data, setData] = useState([]);
   const [showform, setShowForm] = useState(false);
-  const [addContact, setAddContact] = useState(false);
   const [hoveringAddContact, setHoveringAddContact] = useState(false);
   // this htmlformdata is like the json object in the api for better editing and adding the data
   const htmlformData = {
